@@ -116,6 +116,7 @@ public class Player : MonoBehaviour
 
     public void SnapGrapPosition(Vector3 pos)
     {
+        pos.y -= 4.59401f;
         transform.position = pos;
     }
 

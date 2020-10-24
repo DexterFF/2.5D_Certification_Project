@@ -5,7 +5,9 @@ using UnityEngine;
 public class GrabNow : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 _perfectGrapPos, _perfectStandPos;
+    private Transform _perfectGrapPos;
+    [SerializeField]
+    private Transform _standPosition;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,7 +20,7 @@ public class GrabNow : MonoBehaviour
             {
                 p.Grabing(true);
                 p.GrabScript(this);
-                p.SnapGrapPosition(_perfectGrapPos);
+                p.SnapGrapPosition(_perfectGrapPos.position);
                 pAnimation.GrabAnimation();
             }
         }
@@ -26,6 +28,6 @@ public class GrabNow : MonoBehaviour
 
     public Vector3 StandPosition()
     {
-        return _perfectStandPos;
+        return _standPosition.position;
     }
 }

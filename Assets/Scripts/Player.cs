@@ -124,4 +124,13 @@ public class Player : MonoBehaviour
     {
         transform.position = _grapScript.StandPosition();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Collectable c = other.GetComponent<Collectable>();
+        if(c != null)
+        {
+            c.Collected();
+        }
+    }
 }

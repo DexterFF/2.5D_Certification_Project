@@ -33,4 +33,24 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("ClimbUp");
     }
+
+    public void ClimbLadderIdle()
+    {
+        _anim.SetTrigger("ClimbLadder");
+    }
+
+    public void ClimbSpeed(float speed)
+    {
+        _anim.SetFloat("ClimbSpeed", speed);
+    }
+
+    public void ForLadderToId()
+    {
+        _anim.SetTrigger("ForLadderToIdle");
+    }
+
+    public void OnTopLadder()
+    {
+        _anim.SetTrigger("ClimbOnTopLadder");
+    }
 }

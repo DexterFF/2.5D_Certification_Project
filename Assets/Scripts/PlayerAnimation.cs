@@ -53,4 +53,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("ClimbOnTopLadder");
     }
+
+    public void RollAnimation()
+    {
+        _anim.SetTrigger("Roll");
+    }
 }

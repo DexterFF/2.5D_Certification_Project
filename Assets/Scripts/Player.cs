@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _jumpHeightRunning;
     private bool _canJump;
+    private bool _isFlipped = false;
+    private bool _isRolling = false;
 
     private bool _isGrabing = false;
     private GrabNow _grapScript;
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour
     {
         if(_pController != null)
         {
-            if (_pController.isGrounded == true)
+            if (_pController.isGrounded == true && _isRolling == false)
             {
                 float horiz = Input.GetAxisRaw("Horizontal");
                 Vector3 direction = new Vector3(0, 0, horiz);
@@ -69,6 +71,13 @@ public class Player : MonoBehaviour
                 _playerAnim.Run(horiz);
                 Jump(horiz);
                 FlipPlayer(horiz);
+
+                if(Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    _playerAnim.RollAnimation();
+                    _velocity = Vector3.zero;
+                    _isRolling = true;
+                }
             }
             else
             {
@@ -109,11 +118,23 @@ public class Player : MonoBehaviour
         if (directionToFace < 0)
         {
             transform.rotation = Quaternion.AngleAxis(180f, Vector3.up);
+            _isFlipped = true;
         }
         else if (directionToFace > 0)
         {
             transform.rotation = Quaternion.AngleAxis(0f, Vector3.up);
+            _isFlipped = false;
         }
+    }
+
+    public bool Flipped()
+    {
+        return _isFlipped;
+    }
+
+    public void StoppedRolling()
+    {
+        _isRolling = false;
     }
 
     /*--------------------------------------- JUMP GRAP AND CLIMB ON LEDGE SYSTEM -----------------------------------*/

@@ -103,13 +103,13 @@ public class Player : MonoBehaviour
             if (RuningOrNot != 0)
             {
                 _velocityY = _jumpHeightRunning;
-                _playerAnim.CanJump(_canJump);
-                _canJump = false;
             }
             else
             {
                 _velocityY = _jumpHeightIdle;
             }
+            _playerAnim.CanJump(_canJump);
+            _canJump = false;
         }
     }
 
